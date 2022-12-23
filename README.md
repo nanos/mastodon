@@ -1,14 +1,13 @@
 #  Mastodon Glitch Edition  #
 
->   Now with automated deploys!
+This is my slightly modified version of Mastodon Glitch Edition running [mstdn.thms.uk](https://mstdn.thms.uk).
 
-[![Build Status](https://img.shields.io/circleci/project/github/glitch-soc/mastodon.svg)][circleci]
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/glitch-soc/mastodon.svg)][code_climate]
+The changes currently implemented are:
 
-[circleci]: https://circleci.com/gh/glitch-soc/mastodon
-[code_climate]: https://codeclimate.com/github/glitch-soc/mastodon
+ - [Lenghty posts aren't collapsed by default](https://github.com/nanos/mastodon/commit/44c51681492efc863351317309ce7115f914b54e)
+ - [Larger and imo prettier link previews](https://github.com/nanos/mastodon/commit/b954cd1d0e613d6c3d8b2d3bef1909c1df968323)
 
-So here's the deal: we all work on this code, and anyone who uses that does so absolutely at their own risk. can you dig it?
+Otherwise it's standard `glitch-soc` and their documentation applies:
 
 - You can view documentation for this project at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/).
 - And contributing guidelines are available [here](CONTRIBUTING.md) and [here](https://glitch-soc.github.io/docs/contributing/).
