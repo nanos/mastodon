@@ -1,0 +1,433 @@
+.notification-poll p,
+.notification-favourite p,
+.notification-reblog p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.notification-poll .status__content p,
+.notification-poll .status__content .poll,
+.notification-favourite .status__content p,
+.notification-reblog .status__content p {
+    display: none;
+}
+.notification-poll .attachment-list,
+.notification-favourite .attachment-list,
+.notification-reblog .attachment-list {
+    display: none;
+}
+
+.notification-poll .status__content p:nth-child(1),
+.notification-favourite .status__content p:nth-child(1),
+.notification-reblog .status__content p:nth-child(1) {
+    display: block;
+}
+
+.notification-favourite .status__action-bar,
+.notification-poll .status__action-bar,
+.notification-reblog .status__action-bar {
+    display: none;
+}
+.notification-favourite .status,
+.notification-poll .status,
+.notification-reblog .status {
+    min-height: 0; 
+}
+
+.notification-favourite .status__info,
+.notification-poll .status__info,
+.notification-reblog .status__info {
+    display: none
+}
+
+code {
+    color: #9baec8;
+}
+
+/** Don't crop images **/
+
+.columns-area--mobile .status .media-gallery {
+  height: auto !important;
+}
+
+/** Styling for link previews **/
+/* .status-card.compact:has(.status-card__image img[src]) { */
+.status-card.compact {
+  display: block;
+}
+a.status-card.compact:hover {
+    text-decoration: none;
+}
+.status-card.compact {
+	border-color: #313543;
+	background-color: #191b22;
+	border-radius: 4px;
+}
+
+.status-card.compact .status-card__image-image, 
+.status-card.compact .status-card__image-preview {
+	border-radius: 4px 4px 0px 0px;
+}
+.status-card.compact .status-card__image {
+	border-radius: 4px 4px 0px 0px;
+	overflow: hidden;
+	max-height: 400px;
+}
+
+.status-card.compact .status-card__title { 
+	line-height: 20px;
+	overflow: visible;
+	white-space: normal;
+}
+
+.status-card__host {
+	display: block;
+	margin-top: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.fa-file-text::before {
+    content: "";
+}
+
+.status-card.interactive .status-card__image-image,
+.status-card.compact.interactive .status-card__image-image,
+a.status-card .status-card__image-image,
+a.status-card .status-card__image-image.compact {
+    border-radius: 0px;
+}
+
+.status-card.interactive .status-card__content,
+.status-card.compact.interactive .status-card__content,
+a.status-card .status-card__content,
+a.status-card.compact .status-card__content {
+    padding: 15px;
+}
+
+.status-card.interactive .status-card__title,
+.status-card.compact.interactive .status-card__title,
+a.status-card .status-card__title,
+a.status-card.compact .status-card__title {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: normal;
+    color: white;
+    white-space: inherit;
+}
+
+.status-card.interactive .status-card__host,
+.status-card.compact.interactive .status-card__host,
+a.status-card .status-card__host,
+a.status-card.compact .status-card__host {
+    font-size: 14px;
+    color: #71767b;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.status-card.interactive .status-card__description,
+.status-card.compact.interactive .status-card__description,
+a.status-card .status-card__description,
+a.status-card.compact .status-card__description {
+    color: #71767b;
+}
+
+/* custom logos for articles */ 
+.status-card__content:has(a.status-card__title[href*="https://www.youtube.com"]) .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/youtube.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 13px;
+}
+
+a[href*="https://sussexbylines.co.uk"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/SussexBylines.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 33px;
+}
+a[href*="https://westenglandbylines.co.uk"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/WestEnglandBylines.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 45px;
+}
+a[href*="https://bylinesnetwork.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/MqCz98y.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 33px;
+}
+a[href*="https://kentbylines.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/g5vaISq.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 30px;
+}
+a[href*="https://centralbylines.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/sCEXu3Y.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 40px;
+}
+a[href*="https://eastangliabylines.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/3Vh0Kh9.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 40px;
+}
+a[href*="https://northeastbylines.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/iebJbNi.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 20px;
+}
+a[href*="https://yorkshirebylines.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/OPutunb.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 25px;
+}
+a[href*="https://northwestbylines.co.uk"] .status-card__host {
+    background-image: url(https://i.imgur.com/m3A4zU8.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 25px;
+}
+a[href*="https://bylines.scot"] .status-card__host {
+    background-image: url(https://i.imgur.com/RwhtmTq.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 25px;
+}
+
+
+a[href*="https://github.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/github.svg?1);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 16px;
+}
+
+
+a[href*="https://www.bbc.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/bbc.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 16px;
+}
+
+a[href*="https://www.nytimes.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/newyorktimes.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 17px;
+}
+
+
+a[href*="https://www.independent.co.uk"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/the-independent.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 19px;
+}
+
+
+a[href*="https://www.bnnbloomberg.ca"] .status-card__host,
+a[href*="https://www.bloomberg.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/Bloomberg.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 17px;
+}
+
+a[href*="https://www.barrons.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/barrons.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 14px;
+}
+
+a[href*="https://www.nbcnews.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/nbc-news.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 12px;
+}
+
+a[href*="https://www.politico"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/POLITICO.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 12px;
+}
+
+a[href*="https://www.theguardian.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/theguardian.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 25px;
+}
+
+a[href*="https://www.washingtonpost.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/washingtonpost.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 19px;
+}
+
+a[href*="https://www.wsj.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/WSJ.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 12px;
+}
+
+a[href*="https://telex.hu"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/telex.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 13px;
+}
+
+a[href*="https://www.euronews.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/euronews.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 20px;
+}
+
+a[href*="https://www.thelocal.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/thelocal.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 16px;
+}
+
+a[href*="https://www.forbes.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/forbes.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 15px;
+}
+
+a[href*="https://www.defensenews.com"] .status-card__host {
+    background-image: url(https://i.imgur.com/nHnTrvi.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    margin-left: -3px;
+    height: 17px;
+}
+
+a[href*="https://www.reuters.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/Reuters-Logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 25px;
+}
+
+a[href*="https://www.euractiv.com"] .status-card__host {
+    background-image: url(https://i.imgur.com/GX1OkvW.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 16px;
+}
+
+a[href*="https://foreignpolicy.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/foreignpolicy.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 13px;
+}
+
+a[href*="https://www.ft.com"] .status-card__host {
+    background-image: url(https://i.imgur.com/1IRIdMt.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    border-radius: 5px;
+    width: 127px;
+    height: 16px;
+}
+
+a[href*="https://www.france24.com"] .status-card__host {
+    background-image: url(https://i.imgur.com/mvSH8DA.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    border-radius: 5px;
+    width: 90px;
+    height: 25px;
+}
+
+a[href*="https://www.dw.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/dw-news.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 19px;
+}
+
+a[href*="https://www.dw.com"] .status-card__host::after {
+    content: "News";
+    color: white;
+    font-size: 14px;
+    margin-left: 36px;
+    font-weight: 500;
+}
+
+a[href*="https://apnews.com"] .status-card__host {
+    background-image: url(https://mstdn-files.thms.uk/logos/apnews.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 0 !important;
+    height: 18px;
+}
+
+a[href*="https://apnews.com"] .status-card__host::after {
+    content: "News";
+    color: white;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+a[href*="https://github.com"] .status-card__host::after {
+    content: "GitHub";
+    color: white;
+    font-size: 14px;
+    margin-left: 20px;
+}
