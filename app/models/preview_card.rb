@@ -120,7 +120,7 @@ class PreviewCard < ApplicationRecord
     def image_styles(file)
       styles = {
         original: {
-          geometry: '400x400>',
+          geometry: '548x548>',
           file_geometry_parser: FastGeometryParser,
           convert_options: '-coalesce',
           blurhash: BLURHASH_OPTIONS,
