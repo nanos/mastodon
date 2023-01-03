@@ -9,88 +9,66 @@ code {
 }
 
 /** Styling for link previews **/
-/* .status-card.compact:has(.status-card__image img[src]) { */
-.status-card.compact {
-  display: block;
-}
-a.status-card.compact:hover {
-    text-decoration: none;
-}
-.status-card.compact {
-	border-color: #313543;
-	background-color: #191b22;
-	border-radius: 4px;
-}
-
-.status-card.compact .status-card__image-image, 
-.status-card.compact .status-card__image-preview {
-	border-radius: 4px 4px 0px 0px;
-}
-.status-card.compact .status-card__image {
-	border-radius: 4px 4px 0px 0px;
-	overflow: hidden;
-	max-height: 400px;
-}
-
-.status-card.compact .status-card__title { 
-	line-height: 20px;
-	overflow: visible;
-	white-space: normal;
-}
-
-.status-card__host {
-	display: block;
-	margin-top: 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+/* .status-card:has(.status-card__image img[src]) { */
+a.status-card,
+a.status-card.compact,
+a.status-card.interactive {
+    display: block;
+    border-color: #313543;
+    background-color: #191b22;
+    border-radius: 4px;
+    &:hover {
+        text-decoration: none;
+    }
+    .status-card__image-image, 
+    .status-card__image-preview {
+        border-radius: 4px 4px 0px 0px;
+    }
+    .status-card__image {
+        border-radius: 4px 4px 0px 0px;
+        overflow: hidden;
+        max-height: 400px;
+    }
+    .status-card__title { 
+        line-height: 20px;
+        overflow: visible;
+        white-space: normal;
+    }
+    .status-card__host {
+        display: block;
+        margin-top: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .status-card__image-image {
+        border-radius: 0px;
+    }
+    .status-card__content {
+        padding: 15px;
+    }
+    .status-card__title {
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: normal;
+        color: white;
+        white-space: inherit;
+    }
+    .status-card__host {
+        font-size: 14px;
+        color: #71767b;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+     .status-card__description {
+        color: #71767b;
+    }
 }
 
 .fa-file-text::before {
     content: "";
 }
 
-.status-card.interactive .status-card__image-image,
-.status-card.compact.interactive .status-card__image-image,
-a.status-card .status-card__image-image,
-a.status-card .status-card__image-image.compact {
-    border-radius: 0px;
-}
-
-.status-card.interactive .status-card__content,
-.status-card.compact.interactive .status-card__content,
-a.status-card .status-card__content,
-a.status-card.compact .status-card__content {
-    padding: 15px;
-}
-
-.status-card.interactive .status-card__title,
-.status-card.compact.interactive .status-card__title,
-a.status-card .status-card__title,
-a.status-card.compact .status-card__title {
-    font-size: 15px;
-    margin-bottom: 10px;
-    font-weight: normal;
-    color: white;
-    white-space: inherit;
-}
-
-.status-card.interactive .status-card__host,
-.status-card.compact.interactive .status-card__host,
-a.status-card .status-card__host,
-a.status-card.compact .status-card__host {
-    font-size: 14px;
-    color: #71767b;
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
-
-.status-card.interactive .status-card__description,
-.status-card.compact.interactive .status-card__description,
-a.status-card .status-card__description,
-a.status-card.compact .status-card__description {
-    color: #71767b;
-}
 
 /* custom logos for articles */ 
 .status-card__content:has(a.status-card__title[href*="https://www.youtube.com"]) .status-card__host {
@@ -179,6 +157,12 @@ a[href*="https://github.com"] .status-card__host {
     background-size: contain;
     font-size: 0 !important;
     height: 16px;
+    &::after {
+        content: "GitHub";
+        color: white;
+        font-size: 14px;
+        margin-left: 20px;
+    }
 }
 
 
@@ -356,14 +340,13 @@ a[href*="https://www.dw.com"] .status-card__host {
     background-size: contain;
     font-size: 0 !important;
     height: 19px;
-}
-
-a[href*="https://www.dw.com"] .status-card__host::after {
-    content: "News";
-    color: white;
-    font-size: 14px;
-    margin-left: 36px;
-    font-weight: 500;
+    &::after {
+        content: "News";
+        color: white;
+        font-size: 14px;
+        margin-left: 36px;
+        font-weight: 500;
+    }
 }
 
 a[href*="https://apnews.com"] .status-card__host {
@@ -372,18 +355,10 @@ a[href*="https://apnews.com"] .status-card__host {
     background-size: contain;
     font-size: 0 !important;
     height: 18px;
-}
-
-a[href*="https://apnews.com"] .status-card__host::after {
-    content: "News";
-    color: white;
-    font-size: 14px;
-    margin-left: 20px;
-}
-
-a[href*="https://github.com"] .status-card__host::after {
-    content: "GitHub";
-    color: white;
-    font-size: 14px;
-    margin-left: 20px;
+    &:after {
+        content: "News";
+        color: white;
+        font-size: 14px;
+        margin-left: 20px;
+    }
 }
