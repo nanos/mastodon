@@ -362,3 +362,22 @@ a[href*="https://apnews.com"] .status-card__host {
         margin-left: 20px;
     }
 }
+a[href*="https://www.reddit.com"],
+a[href*="https://reddit.com"] {
+    .status-card__host {
+        background-image: url(https://mstdn-files.thms.uk/logos/reddit.svg?1);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+    }
+}
+a[href*="https://news.ycombinator.com/"] {
+    .status-card__host {
+        background-image: url(https://mstdn-files.thms.uk/logos/hn.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+    }
+}
