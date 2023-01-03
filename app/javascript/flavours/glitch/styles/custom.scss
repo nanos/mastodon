@@ -381,3 +381,13 @@ a[href*="https://news.ycombinator.com/"] {
         height: 19px;
     }
 }
+a[href*="https://arstechnica.com/"],
+a[href*="https://www.arstechnica.com/"] {
+    .status-card__host {
+        background-image: url(https://mstdn-files.thms.uk/logos/ars.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+    }
+}
