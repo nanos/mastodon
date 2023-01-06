@@ -814,6 +814,8 @@ a[href*="https://www.twitter.com/"] {
     }
 }
 
+a[href*="https://wired.co.uk/"],
+a[href*="https://www.wired.co.uk/"],
 a[href*="https://wired.com/"],
 a[href*="https://www.wired.com/"] {
     .status-card__host {
