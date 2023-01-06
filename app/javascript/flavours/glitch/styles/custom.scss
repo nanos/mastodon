@@ -2,9 +2,8 @@ code {
     color: #9baec8;
 }
 
-/** Don't crop images **/
-
-.columns-area--mobile .status .media-gallery {
+/** Don't crop images, but only if there are two or less image inside a gallery **/
+.status .media-gallery:not(:has(.media-gallery__item:nth-of-type(3))) {
   height: auto !important;
 }
 
@@ -166,12 +165,15 @@ a[href*="https://github.com"] .status-card__host {
 }
 
 
-a[href*="https://www.bbc.com"] .status-card__host {
-    background-image: url(https://mstdn-files.thms.uk/logos/bbc.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    font-size: 0 !important;
-    height: 16px;
+a[href*="https://www.bbc.co.uk"],
+a[href*="https://www.bbc.com"] {
+    .status-card__host {
+        background-image: url(https://mstdn-files.thms.uk/logos/bbc.png?1);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 16px;
+    }
 }
 
 a[href*="https://www.nytimes.com"] .status-card__host {
@@ -773,5 +775,65 @@ a[href^="https://cr.wikipedia.org/"] {
             margin-left: 30px;
             font-weight: 500;
         }
+    }
+}
+a[href*="https://techdirt.com/"],
+a[href*="https://www.techdirt.com/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/techdirt.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+    }
+}
+
+a[href*="https://php.net/"],
+a[href*="https://wiki.php.net/"],
+a[href*="https://www.php.net/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/php.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+    }
+}
+
+a[href*="https://twitter.com/"],
+a[href*="https://www.twitter.com/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/twitter.png?1);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+    }
+}
+
+a[href*="https://wired.com/"],
+a[href*="https://www.wired.com/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/wired.png?1);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+    }
+}
+
+a[href*="https://vice.com/"],
+a[href*="https://www.vice.com/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/vice.png?1);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
     }
 }
