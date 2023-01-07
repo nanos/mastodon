@@ -839,3 +839,13 @@ a[href*="https://www.vice.com/"] {
         position: relative;
     }
 }
+a[href*="https://developer.mozilla.org/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/mdn.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+    }
+}
