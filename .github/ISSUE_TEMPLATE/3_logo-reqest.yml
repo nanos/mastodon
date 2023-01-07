@@ -1,0 +1,10 @@
+name: Logo request
+description: If you want a logo for a link
+labels: [logo-request]
+body:
+  - type: input
+    attributes:
+      label: Post with Link
+      description: Link to a post on mstdn.thms.uk including a link preview
+    validations:
+      required: true
