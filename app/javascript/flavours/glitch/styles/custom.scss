@@ -849,3 +849,40 @@ a[href*="https://developer.mozilla.org/"] {
         position: relative;
     }
 }
+
+a[href*="https://phparch.com/"] ,
+a[href*="https://www.phparch.com/"] {
+    .status-card__host {
+        background: url(https://mstdn-files.thms.uk/logos/phparch.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+        &::after {
+            content: "php[architect]";
+            color: white;
+            font-size: 14px;
+            margin-left: 28px;
+        }
+    }
+}
+a[href*="https://www.css-tricks.com/"],
+a[href*="https://css-tricks.com/"] {
+    .status-card__host {
+        &::before {
+            content: "";
+            height: 75%;
+            width: 100%;
+            background: url(https://mstdn-files.thms.uk/logos/css-tricks.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        font-size: 0 !important;
+        height: 19px;
+        position: relative;
+    }
+}
