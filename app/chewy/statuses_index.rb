@@ -79,6 +79,8 @@ class StatusesIndex < Chewy::Index
     field :account_id, type: 'long'
     field :created_at, type: 'date'
     field :visibility, type: 'keyword'
+    field :discoverable, type: 'boolean', value: ->(status) { status.account.discoverable }
+    field :silenced, type: 'boolean', value: ->(status) { status.account.silenced? }
     field :domain, type: 'keyword', value: ->(status) { status.account.domain or Rails.configuration.x.local_domain }
     field :lang, type: 'keyword', value: ->(status) { status.language }
     field :is, type: 'keyword', value: ->(status) { status.searchable_is }

@@ -24,7 +24,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
           # is called before rendering the data and we need to filter based
           # on the results of the filter, so this filtering happens here instead
           bulk.map! do |entry|
-            new_entry = if entry[:index] && entry.dig(:index, :data, 'searchable_by').blank? && Rails.configuration.x.search_scope == :classic
+            new_entry = if entry[:index] && entry.dig(:index, :data, 'searchable_by').blank? && Rails.configuration.x.status_search_scope == :classic
                           { delete: entry[:index].except(:data) }
                         else
                           entry
@@ -63,7 +63,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
       local_votes_scope,
       local_bookmarks_scope,
     ]
-    case Rails.configuration.x.search_scope
+    case Rails.configuration.x.status_search_scope
     when :public
       classic_scopes + [public_scope]
     when :public_or_unlisted

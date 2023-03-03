@@ -66,7 +66,17 @@ class SearchService < BaseService
 
   def perform_statuses_search!
     statuses_index = StatusesIndex.filter(term: { searchable_by: @account.id })
-    case Rails.configuration.x.search_scope
+    case Rails.configuration.x.status_search_scope
+    when :discoverable
+      statuses_index = statuses_index.filter.or(
+        bool: {
+          filter: [
+            { term: { visibility: 'public' } },
+            { term: { discoverable: true } },
+            { term: { silenced: false } },
+          ],
+        }
+      )
     when :public
       statuses_index = statuses_index.filter.or(term: { visibility: 'public' })
     when :public_or_unlisted
