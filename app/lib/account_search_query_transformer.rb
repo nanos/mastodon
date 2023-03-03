@@ -30,7 +30,7 @@ class AccountSearchQueryTransformer < Parslet::Transform
         if following
           params[:must] << { terms: { id: following_ids } }
         elsif following_ids.any?
-          params[:should] << { terms: { id: following_ids, boost: 100 } }
+          params[:should] << { terms: { id: following_ids, boost: 0.5 } }
         end
       end
 
