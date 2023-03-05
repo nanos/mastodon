@@ -181,6 +181,7 @@ class Status < ApplicationRecord
   def searchable_is
     keywords = []
     keywords << :bot if account.bot?
+    keywords << :group if account.group?
     keywords << :local if local?
     keywords << :local_only if local_only
     keywords << :reply if reply?
