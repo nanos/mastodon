@@ -40,7 +40,7 @@ class SearchQueryTransformer < Parslet::Transform
       when TagClause
         { term: { tags: clause.tag } }
       else
-        raise Mastodon::SyntaxError.new("Unexpected clause type: #{clause}")
+        raise Mastodon::SyntaxError, "Unexpected clause type: #{clause}"
       end
     end
 
@@ -51,7 +51,7 @@ class SearchQueryTransformer < Parslet::Transform
       when TagClause
         { term: { tags: clause.tag } }
       else
-        raise Mastodon::SyntaxError.new("Unexpected clause type: #{clause}")
+        raise Mastodon::SyntaxError, "Unexpected clause type: #{clause}"
       end
     end
 
@@ -60,7 +60,7 @@ class SearchQueryTransformer < Parslet::Transform
       when PrefixClause
         { clause.term => clause.order }
       else
-        raise Mastodon::SyntaxError.new("Unexpected clause type: #{clause}")
+        raise Mastodon::SyntaxError, "Unexpected clause type: #{clause}"
       end
     end
   end
@@ -76,7 +76,7 @@ class SearchQueryTransformer < Parslet::Transform
         when nil
           :should
         else
-          raise Mastodon::SyntaxError.new("Unknown operator: #{str}")
+          raise Mastodon::SyntaxError, "Unknown operator: #{str}"
         end
       end
     end
@@ -115,7 +115,7 @@ class SearchQueryTransformer < Parslet::Transform
       when '-'
         @operator = :must_not
       else
-        raise Mastodon::SyntaxError.new("Unknown operator: #{str}")
+        raise Mastodon::SyntaxError, "Unknown operator: #{str}"
       end
     end
   end
@@ -132,7 +132,7 @@ class SearchQueryTransformer < Parslet::Transform
       when '-'
         @operator = :must_not
       else
-        raise Mastodon::SyntaxError.new("Unknown operator: #{str}")
+        raise Mastodon::SyntaxError, "Unknown operator: #{str}"
       end
 
       case prefix
@@ -161,6 +161,7 @@ class SearchQueryTransformer < Parslet::Transform
       when 'scope'
         raise Mastodon::SyntaxError unless operator.nil?
         raise Mastodon::SyntaxError unless term == 'classic'
+
         @filter = 'searchable_by'
         @term = :account_id_placeholder
       when 'sort'
@@ -198,7 +199,7 @@ class SearchQueryTransformer < Parslet::Transform
     elsif clause[:phrase]
       PhraseClause.new(prefix, operator, clause[:phrase].is_a?(Array) ? clause[:phrase].map { |p| p[:term].to_s }.join(' ') : clause[:phrase].to_s)
     else
-      raise Mastodon::SyntaxError.new("Unexpected clause type: #{clause}")
+      raise Mastodon::SyntaxError, "Unexpected clause type: #{clause}"
     end
   end
 
