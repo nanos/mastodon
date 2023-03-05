@@ -183,7 +183,8 @@ class Status < ApplicationRecord
     keywords << :bot if account.bot?
     keywords << :group if account.group?
     keywords << :local if local?
-    keywords << :local_only if local_only
+    # Glitch and Hometown have local-only posts. Vanilla Mastodon doesn't.
+    keywords << :local_only if self.class.method_defined?(:local_only?) && local_only?
     keywords << :reply if reply?
     keywords << :sensitive if sensitive?
     keywords
