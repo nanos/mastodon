@@ -562,6 +562,8 @@ class Account < ApplicationRecord
     keywords << :bot if bot?
     keywords << :group if group?
     keywords << :local if local?
+    keywords << :memorial if memorial?
+    keywords << :sensitive if sensitized?
     keywords
   end
 
