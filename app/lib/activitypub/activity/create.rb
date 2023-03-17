@@ -85,8 +85,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       attach_tags(@status)
     end
 
-    StatusesIndex.import! @status
-
     resolve_thread(@status)
     fetch_replies(@status)
     distribute
