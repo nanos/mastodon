@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Import, type: :model do
@@ -18,6 +20,11 @@ RSpec.describe Import, type: :model do
 
     it 'is invalid without a data' do
       import = Import.create(account: account, type: type)
+      expect(import).to model_have_error_on_field(:data)
+    end
+
+    it 'is invalid with malformed data' do
+      import = Import.create(account: account, type: type, data: StringIO.new('\"test'))
       expect(import).to model_have_error_on_field(:data)
     end
 

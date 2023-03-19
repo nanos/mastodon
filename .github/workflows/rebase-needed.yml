@@ -2,8 +2,17 @@ name: PR Needs Rebase
 
 on:
   push:
+    branches-ignore:
+      - 'dependabot/**'
+      - 'l10n_main'
   pull_request_target:
+    branches-ignore:
+      - 'dependabot/**'
+      - 'l10n_main'
     types: [synchronize]
+
+permissions:
+  pull-requests: write
 
 jobs:
   label-rebase-needed:
@@ -19,4 +28,7 @@ jobs:
         with:
           dirtyLabel: 'rebase needed :construction:'
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          commentOnClean: This pull request has resolved merge conflicts and is ready for review.
           commentOnDirty: This pull request has merge conflicts that must be resolved before it can be merged.
+          retryMax: 10
+          continueOnMissingPermissions: false
