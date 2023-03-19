@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SearchQueryParser < Parslet::Parser
+class AccountSearchQueryParser < Parslet::Parser
   rule(:term)      { match('[^\s":#]').repeat(1).as(:term) }
   rule(:quote)     { str('"') }
   rule(:colon)     { str(':') }

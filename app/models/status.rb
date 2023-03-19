@@ -174,11 +174,17 @@ class Status < ApplicationRecord
     ].compact.join("\n\n")
   end
 
+  def searchable_tags
+    Extractor.extract_hashtags(FormattingHelper.extract_status_plain_text(self))
+  end
+
   def searchable_is
     keywords = []
     keywords << :bot if account.bot?
+    keywords << :group if account.group?
     keywords << :local if local?
-    keywords << :local_only if local_only
+    # Glitch and Hometown have local-only posts. Vanilla Mastodon doesn't.
+    keywords << :local_only if self.class.method_defined?(:local_only?) && local_only?
     keywords << :reply if reply?
     keywords << :sensitive if sensitive?
     keywords
