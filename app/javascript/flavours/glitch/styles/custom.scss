@@ -886,3 +886,51 @@ a[href*="https://css-tricks.com/"] {
         position: relative;
     }
 }
+
+/* Threaded replies, see https://github.com/ronilaukkarinen/mastodon-bird-ui/issues/4 */
+.layout-single-column .scrollable>div>div .status.status-reply {
+  border-color: transparent;
+  position: relative;
+}
+
+/* If we don't have threads support yet, just use borders */
+.layout-single-column .scrollable>div:not(:has(.status__thread)) .status.status-reply {
+  border-color: #38384d;
+}
+
+/* If we don't have threads support yet, hide faux lines */
+.layout-single-column .scrollable>div:not(:has(.status__thread)) .status.status-reply .status__avatar::before {
+  display: none;
+}
+
+.layout-single-column .scrollable>div>.status__thread .status.status-reply .status__avatar::before {
+  background-color: #434264;
+  content: '';
+  height: 100%;
+  left: calc(calc(calc(48px / 2) + 16px) - 1px);
+  position: absolute;
+  top: 20px;
+  width: 2px;
+}
+
+.layout-single-column .scrollable>div>.status__thread>.status__thread>div:last-child .status.status-reply {
+  border-color: #38384d;
+}
+
+/* stylelint-disable selector-max-compound-selectors */
+.layout-single-column .scrollable>div>.status__thread>.status__thread>div:last-child .status.status-reply .status__avatar::before {
+  display: none;
+}
+
+.layout-single-column .scrollable>div>div:first-child .status.status-reply .status__avatar::before {
+  top: 60px;
+}
+
+.layout-single-column .scrollable>div>div:last-child .status.status-reply .status__avatar::before {
+  height: 40px;
+}
+
+.layout-single-column .scrollable>div>div:only-of-type .status.status-reply .status__avatar::before {
+  border-color: #38384d;
+  display: none;
+}
