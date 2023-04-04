@@ -887,6 +887,10 @@ a[href*="https://css-tricks.com/"] {
     }
 }
 
+.account__avatar {
+    border-radius: 50%;
+}
+
 /* Threaded replies, see https://github.com/ronilaukkarinen/mastodon-bird-ui/issues/4 */
 .status__thread {}
 
