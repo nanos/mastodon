@@ -1,3 +1,5 @@
+# Mastodon Glitch Edition
+
 #  Mastodon Glitch Edition  #
 
 This is my slightly modified version of Mastodon Glitch Edition running [mstdn.thms.uk](https://mstdn.thms.uk).
