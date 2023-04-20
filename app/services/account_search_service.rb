@@ -50,7 +50,7 @@ class AccountSearchService < BaseService
 
     @search_results ||= begin
       results = from_elasticsearch if Chewy.enabled?
-      results ||= from_database
+      # results ||= from_database
       results
     end
   end
