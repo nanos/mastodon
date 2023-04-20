@@ -548,15 +548,26 @@ class Account < ApplicationRecord
   def searchable_text
     [
       PlainTextFormatter.new(note, local?).to_s,
-      fields.map { |field| [
-        field.name,
-        PlainTextFormatter.new(field.value, local?).to_s
-      ].join(" ") }
+      fields.map do |field|
+        [
+          field.name,
+          PlainTextFormatter.new(field.value, local?).to_s,
+        ].join(' ')
+      end,
     ].join("\n\n")
   end
 
+  def searchable_emojis
+    CustomEmoji.from_text(display_name, domain).reject(&:disabled).pluck(:shortcode)
+  end
+
   def searchable_tags
-    Extractor.extract_hashtags(PlainTextFormatter.new(note, local?).to_s)
+    return [] unless discoverable
+
+    tags = []
+    tags += Extractor.extract_hashtags(PlainTextFormatter.new(note, local?).to_s)
+    tags += featured_tags.pluck(:name)
+    tags.uniq
   end
 
   def searchable_is
@@ -564,8 +575,6 @@ class Account < ApplicationRecord
     keywords << :bot if bot?
     keywords << :group if group?
     keywords << :local if local?
-    keywords << :memorial if memorial?
-    keywords << :sensitive if sensitized?
     keywords
   end
 

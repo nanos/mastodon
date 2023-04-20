@@ -27,6 +27,7 @@ import {
   Status,
   GettingStarted,
   KeyboardShortcuts,
+  SearchReference,
   PublicTimeline,
   CommunityTimeline,
   AccountTimeline,
@@ -191,6 +192,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/search-reference' component={SearchReference} content={children} />
           <WrappedRoute path='/about' component={About} content={children} />
           <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
 
@@ -549,7 +551,7 @@ class UI extends React.Component {
   };
 
   handleHotkeyToggleHelp = () => {
-    if (this.props.location.pathname === '/keyboard-shortcuts') {
+    if (this.props.location.pathname === '/keyboard-shortcuts' || this.props.location.pathname === '/search-reference') {
       this.props.history.goBack();
     } else {
       this.props.history.push('/keyboard-shortcuts');

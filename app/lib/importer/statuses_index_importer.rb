@@ -64,6 +64,8 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
       local_bookmarks_scope,
     ]
     case Rails.configuration.x.status_search_scope
+    when :discoverable
+      classic_scopes + [discoverable_scope]
     when :public
       classic_scopes + [public_scope]
     when :public_or_unlisted
@@ -91,6 +93,10 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
 
   def local_statuses_scope
     Status.local.select('"statuses"."id", COALESCE("statuses"."reblog_of_id", "statuses"."id") AS status_id')
+  end
+
+  def discoverable_scope
+    Status.with_public_visibility.where(account: Account.discoverable).select('"statuses"."id", "statuses"."id" AS status_id')
   end
 
   def public_scope

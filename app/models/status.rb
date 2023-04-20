@@ -172,6 +172,10 @@ class Status < ApplicationRecord
     ids.uniq
   end
 
+  def searchable_mentions_ids
+    mentions.joins(:account).active.pluck(:account_id)
+  end
+
   def searchable_text
     [
       spoiler_text,
@@ -179,6 +183,10 @@ class Status < ApplicationRecord
       preloadable_poll ? preloadable_poll.options.join("\n\n") : nil,
       ordered_media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
+  end
+
+  def searchable_emojis
+    emojis.reject(&:disabled).pluck(:shortcode)
   end
 
   def searchable_tags
@@ -189,7 +197,6 @@ class Status < ApplicationRecord
     keywords = []
     keywords << :bot if account.bot?
     keywords << :group if account.group?
-    keywords << :local if local?
     # Glitch and Hometown have local-only posts. Vanilla Mastodon doesn't.
     keywords << :local_only if self.class.method_defined?(:local_only?) && local_only?
     keywords << :reply if reply?
@@ -199,12 +206,14 @@ class Status < ApplicationRecord
 
   def searchable_has
     keywords = []
-    keywords << :cw if spoiler_text?
+    keywords << :warning if spoiler_text?
     keywords << :link if FetchLinkCardService.new.link?(self)
-    keywords << :media if media_attachments.present?
-    keywords << :mention if mentions.present?
     keywords << :poll if preloadable_poll.present?
-    keywords << :tag if tags.present?
+
+    media_types = media_attachments.pluck(:type).map(&:to_sym).uniq
+    keywords << :media if media_types.present?
+    keywords += media_types.reject { |t| t == :unknown }
+
     keywords
   end
 

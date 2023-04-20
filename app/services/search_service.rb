@@ -29,7 +29,7 @@ class SearchService < BaseService
           end
         end
 
-        if full_text_searchable?
+        if status_searchable?
           begin
             results[:statuses] = perform_statuses_search!
             search_succeeded = true
@@ -65,8 +65,13 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
+    required_account_ids = parsed_query.statuses_required_account_ids
+    return [] if @account.blocked_by.exists?(id: required_account_ids)
+
     statuses_index = StatusesIndex.filter(term: { searchable_by: @account.id })
-    case Rails.configuration.x.status_search_scope
+
+    status_search_scope = Rails.configuration.x.status_search_scope
+    case status_search_scope
     when :discoverable
       statuses_index = statuses_index.filter.or(
         bool: {
@@ -80,9 +85,14 @@ class SearchService < BaseService
     when :public
       statuses_index = statuses_index.filter.or(term: { visibility: 'public' })
     when :public_or_unlisted
-      statuses_index = statuses_index.filter.or(terms: { visibility: ['public', 'unlisted'] })
+      statuses_index = statuses_index.filter.or(terms: { visibility: %w(public unlisted) })
+    when :classic
+      # No alternate filter queries.
+    else
+      raise InvalidParameterError, "Unexpected status search scope: #{status_search_scope}"
     end
-    definition = parsed_query.apply(statuses_index, @account)
+
+    definition = parsed_query.statuses_apply(statuses_index, @account.id, following_ids)
 
     definition = definition.filter(term: { account_id: @options[:account_id] }) if @options[:account_id].present?
 
@@ -132,7 +142,7 @@ class SearchService < BaseService
     url_resource.class.name.downcase.pluralize.to_sym
   end
 
-  def full_text_searchable?
+  def status_searchable?
     return false unless Chewy.enabled?
 
     statuses_search? && !@account.nil?
@@ -160,5 +170,9 @@ class SearchService < BaseService
 
   def parsed_query
     SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query))
+  end
+
+  def following_ids
+    @following_ids ||= @account.active_relationships.pluck(:target_account_id) + [@account.id]
   end
 end

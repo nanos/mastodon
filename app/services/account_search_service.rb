@@ -74,10 +74,10 @@ class AccountSearchService < BaseService
   def from_elasticsearch
     return [] if account && options[:following] && following_ids.empty?
 
-    query = AccountSearchQueryTransformer
+    query = SearchQueryTransformer
             .new
-            .apply(AccountSearchQueryParser.new.parse(@query))
-            .query(
+            .apply(SearchQueryParser.new.parse(@query))
+            .accounts_query(
               likely_acct?,
               Rails.configuration.x.account_search_scope,
               !account.nil?,
