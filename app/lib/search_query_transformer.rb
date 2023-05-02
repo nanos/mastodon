@@ -159,7 +159,7 @@ class SearchQueryTransformer < Parslet::Transform
         when '-'
           :must_not
         when nil
-          :should
+          :must
         else
           raise Mastodon::SyntaxError, "Unknown operator: #{str}"
         end
