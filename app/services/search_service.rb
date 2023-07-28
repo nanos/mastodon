@@ -30,7 +30,7 @@ class SearchService < BaseService
           end
         end
 
-        if status_searchable?
+        if full_text_searchable
           begin
             results[:statuses] = perform_statuses_search!
             search_succeeded = true
@@ -63,7 +63,8 @@ class SearchService < BaseService
       resolve: @resolve,
       offset: @offset,
       use_searchable_text: true,
-      following: @following
+      following: @following,
+      start_with_hashtag: @query.start_with?('#')
     )
   end
 
@@ -138,21 +139,21 @@ class SearchService < BaseService
   end
 
   def url_resource
-    @_url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
+    @url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
   end
 
   def url_resource_symbol
     url_resource.class.name.downcase.pluralize.to_sym
   end
 
-  def status_searchable?
+  def full_text_searchable?
     return false unless Chewy.enabled?
 
-    statuses_search? && !@account.nil?
+    statuses_search? && !@account.nil? && !(@query.include?('@') && !@query.include?(' '))
   end
 
   def account_searchable?
-    account_search?
+    account_search? && !(@query.include?('@') && @query.include?(' '))
   end
 
   def hashtag_searchable?
