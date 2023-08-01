@@ -30,7 +30,7 @@ class SearchService < BaseService
           end
         end
 
-        if full_text_searchable
+        if full_text_searchable?
           begin
             results[:statuses] = perform_statuses_search!
             search_succeeded = true
